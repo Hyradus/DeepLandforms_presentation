@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>DeepLandforms</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<style>
+			/* Custom CSS to center content vertically */
+			.slide-layout {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+			}
+			.title-authors {
+				text-align: center;
+			}
+			.logo-left,
+			.logo-right {
+				margin: 0 20px; /* Adjust the margin as needed */
+			}
+			.title-authors {
+			text-align: center; /* Center aligns all child elements */
+			}
+
+			.title-authors h1 {
+			font-size: 135px; /* Adjust the font size as needed */
+			font-weight: bold;
+			margin: 0; /* Removes default margin */
+			}
+
+			.title-authors p.subtitle {
+			font-size: 23px; /* Adjust the font size as needed */
+			font-weight: bold; /* Make the subtitle bold if desired */
+			margin: 10px 0; /* Adds space above and below the subtitle */
+			}
+
+			.title-authors p.authors,
+			.title-authors p.affiliations {
+			font-size: 25px; /* Adjust the font size for authors */
+			margin: 5px 0; /* Adds space above and below */
+			}
+
+			.title-authors p.affiliations {
+			font-size: 15px; /* Adjust the font size for affiliations */
+			}
+			.title-authors p.notes {
+			font-size: 20px; /* Adjust the font size as needed */
+			font-style: italic;
+			}	
+
+			/* Header */
+			.header {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			text-align: left; /* Adjust alignment as needed */
+			margin-left: 10px; 
+			margin-top: -10px; 
+
+			}
+			.header .header-content {
+				display: flex; /* Use flexbox to position elements side by side */
+				align-items: center; /* Align items vertically in the center */
+				padding: 5px; /* Adjust padding as needed */
+			}
+			.header img {
+			height: 75px; /* Adjust the image height */
+			/* You can add more styles as needed */
+			}
+
+			.footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				text-align: left; /* Adjust alignment as needed */
+				font-style: italic; /* Make the text italic */
+				margin-left: 10px; 
+				margin-bottom: -10px; 
+			}
+
+			.footer .footer-content {
+				display: flex; /* Use flexbox to position elements side by side */
+				align-items: center; /* Align items vertically in the center */
+				padding: 5px; /* Adjust padding as needed */
+			}
+
+			.footer img {
+				height: 30px; /* Adjust the image height */
+				/* You can add more styles as needed */
+			}
+
+			.footer p {
+				font-size: 15px; /* Adjust the font size for the text */
+				margin-left: 10px; /* Add margin to separate text from the image */
+			}		
+			section > section > img {
+				height: 100px;
+			}
+			
+			.reveal .backgrounds .ken-burns {
+				animation: kenBurnsAnimation 60s linear infinite alternate;
+			}
+			.reveal .backgrounds .ken-burns2 {
+				animation: kenBurnsAnimation2 60s linear infinite alternate;
+			}
+			.reveal .backgrounds .ken-burns3 {
+				animation: kenBurnsAnimation3 60s linear infinite alternate;
+			}
+			.reveal .backgrounds .ken-burns4 {
+				animation: kenBurnsAnimation4 60s linear infinite alternate;
+			}
+
+
+			@keyframes kenBurnsAnimation {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.15); } /* Slight scaling */
+				100% { transform: scale(1); }
+			}
+			@keyframes kenBurnsAnimation2 {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.25); } /* Slight scaling */
+				100% { transform: scale(1); }
+			}
+			@keyframes kenBurnsAnimation3 {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.2); } /* Slight scaling */
+				100% { transform: scale(1); }
+			}
+			@keyframes kenBurnsAnimation4 {
+				0% { transform: scale(1); }				
+				100% { transform: scale(1.2); }
+			}
+			.side-by-side {
+			display: flex; /* Enable Flexbox */
+			align-items: center; /* Align items vertically in the center */
+			justify-content: center; /* Center items horizontally */
+			position: fixed; /* Fixed position */
+			bottom: -25%; /* Closer to the bottom */
+			left: 25%; /* Center horizontally */
+			transform: translateX(0%); /* Adjust for center alignment */
+			transform: translateY(-50%); /* Adjust for center alignment */
+			z-index: 10; /* Ensure it's above other elements */
+		}
+
+		.side-by-side img, .side-by-side h3 {
+			margin: 0 10px; /* Space between the image and text */
+		}
+		.shadowed-text {
+			text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+		}
+		.shadowed-text h2 {
+			text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+		}
+		.blurred-box {
+			backdrop-filter: blur(5px);
+			background-color: rgba(200, 200, 200, 0.1); /* Semi-transparent background */
+			padding: 50px;
+			margin: auto auto; /* Centering the box */
+			max-width: 80%; /* Adjust as needed */
+			border-radius: 50px;
+		}
+		.blurred-box2 {
+			backdrop-filter: blur(3px);
+			background-color: rgba(200, 200, 200, 0.1); /* Semi-transparent background */
+			padding: 50px;
+			margin: auto auto; /* Centering the box */
+			max-width: 80%; /* Adjust as needed */
+			border-radius: 50px;
+		}
+
+		.image-row {
+			display: flex;
+			justify-content: space-between; /* Adjusts the spacing between images */
+			align-items: center; /* Aligns images vertically */
+			margin-bottom: 0px; /* Space between images and text */
+			margin-top: 10px; /* Space between images and text */
+		}
+
+		.slide-image {
+			width: 25%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+		.image-row2 {
+			
+			align-items: center; /* Aligns images vertically */
+			margin-bottom: 0px; /* Space between images and text */
+			margin-top: 10px; /* Space between images and text */
+		}
+
+		.slide-image2 {
+			width: 50%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+		.slide-image2 {
+			width: 25%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+		.slide-image4 {
+			width: 65%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+		.slide-image5 {
+			width: 45%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+		.slide-image6 {
+			width: 40%; /* Sets the width to 50% of the container */
+			height: auto; /* Maintains the aspect ratio */
+			object-fit: cover; /* Adjusts the image size to cover the container without distorting aspect ratio */
+		}
+
+		.text-content {
+			text-align: center; /* Centers the text content */
+		}
+
+			
+		</style>
+
+		<div class="reveal">
+			<div class="slides">
+				<!-- Header and Footer -->
+				<div class="header">
+					<div class="footer-content">
+						<img src="./content/logo/CU_Logotype_RGB_white_blue_red.png" alt="Constructor University">
+						<img src="./content/logo/Explore_Logo_Standard.png" alt="EXPLORE Project">
+						<img src="./content/logo/Europlanet_Machine_Learning_Logo_Combined_White_nobg.svg">
+					</div>				
+				</div>
+				<div class="footer">
+					<div class="footer-content">
+						<img src="./content/logo/logoEU.jpg" alt="EU Logo">
+						<p>This project has received funding from the European Union'S Horizon research and innovation programme under grant agreement No 101004214 and No 871149.</p>
+					</div>
+				</div>
+				<section>
+					<div class="title-authors">
+					  <h1>DeepLandforms</h1>
+					  <p class="subtitle">Introducing a User-Friendly, Open-Source Deep Learning Tool for Planetary Mapping</p>					  
+					  <p class="authors">Nodjoumi Giacomo</p>
+					  <p class="affiliations">Constructor University Bremen, Bremen, Germany</p>
+					</div>
+					
+			
+				  </section>				
+							
+				<!-- Planetary Mapping -->
+				<section>
+					<!-- Main topic introduction -->
+					
+						
+					
+					<section >
+						<h2>Planetary Mapping</h2>
+						<p>"Planetary Mapping goes beyond map creation." </p>
+						<p>"It is about uncovering the mysteries of planetary surfaces, revealing their past and shaping our understanding of their future."</p>
+
+
+					</section>
+				
+					<!-- Vertical Slide 1: The Purpose -->
+					<section data-background-image="content/images/PM-MOO-MS-Apollo11_4k.png" class="ken-burns2 shadowed-text" data-state="changeToDark">
+						<div class="blurred-box">
+							<h2>The Purpose of Planetary Mapping</h2>
+							<ul>
+								<li>To enhance our understanding of the evolution of celestial bodies.</li>
+								<li>For planning and execution of space missions.</li>
+								<li>Resource identification for future space endeavors.</li>
+							</ul>
+							<div>           
+								<small>See also: <a href="https://doi.org/10.1007/978-3-319-65179-8_4" target="_blank">Hare et al. (2018)</a>, <a href="https://github.com/europlanet-gmap/winter-school-2023/tree/main/crs#videos-and-introductions" target="_blank">this repo</a>, and <a href="https://indico.obspm.fr/event/1713/contributions/914/" target="_blank">Pozzobon (2023)</a>, <a href="https://indico.obspm.fr/event/1272/contributions/634/" target="_blank">Pozzobon (2022)</a>, <a href="https://doi.org/10.3133/ofr20191012" target="_blank">Skinner et al., (2019)</a>, <a href="https://pubs.usgs.gov/publication/tm11B13" target="_blank">Skinner et al. (2022)</a>, <a href="https://elib.dlr.de/142472/1/ICC2021_Nass%20et%20al_Review%20on%20PlanetMaps_submitted.pdf" target="_blank">Naß et al. (2021)</a></small>
+							</div>
+						</div>
+					</section>
+				
+					<!-- Vertical Slide 2: The Practitioners and Scope -->
+					<section data-background-image="content/images/PM-MER-MS-H05_5cc.browse.png" class="ken-burns2 shadowed-text" data-state="changeToDark">
+						<div class="blurred-box">
+							<h2>The Carthographers</h2>
+							<ul>
+								<li>Geomorphologists and geologists</li>
+								<li>Professionals, students, and amateur enthusiasts</li>
+							</ul>
+						</div>
+					</section>
+					
+				
+					<!-- Vertical Slide 3: Which Planetary Bodies are Mapped -->
+					<section>
+						<h2>Which Planetary Bodies are Mapped?</h2>
+						<p>"Planetary Mapping encompasses a wide range of celestial bodies within our Solar System, including planets, their moons, and even asteroids."</p>
+					</section>
+				
+					<!-- Vertical Slide 4: How is Planetary Mapping Accomplished -->
+					<section>
+						<h2>How is Planetary Mapping Accomplished?</h2>
+						<ul>
+							<li>Collecting remote-sensed data from orbiters, rovers, and landers</li>
+							<li>Processing, and analysis of the data.</li>														
+							<li>Defining symbology, units, and boundaries.</li>
+							<li>Creating detailed geometries of planetary surfaces.</li>
+							<li>Composing the final map.</li>
+						</ul>
+					</section>
+				</section>
+				<section data-background-image="content/images/landforms_tiled.png" class="ken-burns4 shadowed-text" data-state="changeToDark">
+					<div class="blurred-box2">
+						<h2>Understanding Planetary Landforms</h2>
+							<p>"With the term landform, we refer to the topographic expressions on the surface of a planetary body. These can be described using at least seven parameters:</p>
+							<ul>
+								<li>Shape</li>
+								<li>Size</li>
+								<li>Height</li>
+								<li>Texture</li>
+								<li>Pattern</li>
+								<li>Tone/Hue</li>
+								<li>Location/Association</li>
+							</ul>
+							<p>When these parameters are combined, they create a unique object, and multiple landforms in an area describe a terrain."</p>
+							<small><a href="https://www.researchgate.net/publication/233793398_Principles_of_remote_sensing_an_introductory_textbook" target="_blank">Tempfli 79 et al., (2009)</a></small>							
+							
+					</div>
+				</section>
+				
+				
+				  <!-- Pit Skylights-->
+				  <section>
+					<h3>Pit Landforms</h3>
+					<div class="image-row">
+						<img src="./content/images/Figure-4-Pit-Types.png" alt="Description of First Image" class="slide-image">
+						<img src="./content/images/ctxpit.jpg" alt="Description of Second Image" class="slide-image">
+						<img src="./content/images/hirisepits.jpg" alt="Description of Third Image" class="slide-image">
+					</div>
+					<div class="text-content">						
+						<p>Pits and skylights are depressions of the terrain characterized by an elongated to almost circular shape, flat rims and bottom, walls ranging from almost flat to very steep and, in some cases sub-vertical.</p>
+					</div>
+				</section>
+				<section>
+					
+										
+					<h2>Software</h2>
+					<ul>
+						<li><strong><a href="https://github.com/DOI-USGS/ISIS3" target="_blank">USGS Integrated Software for Imagers and Spectrometers (ISIS)</a></strong>: Processes RAW data and more.</li>
+						<li><strong><a href="https://github.com/NeoGeographyToolkit/StereoPipeline" target="_blank">NASA Ames Stereo Pipeline (ASP)</a></strong>: Generates Digital Elevation Model (DEM) and more.</li>
+						<li><strong>GIS (Geographic Information System)</strong>: Includes QGIS, ArcGIS, ENVI, etc. Serves as the main tool.</li>
+						<li><strong>Open-source GIS plugins and tools:</strong></li>
+						<ul>
+							<li><a href="https://github.com/europlanet-gmap/mappy" target="_blank">Mappy</a>: Assists in map layers creation.</li>
+							<li><a href="https://github.com/europlanet-gmap/OpenCraterTool" target="_blank">OpenCraterTool</a>: For crater counting and age estimation.</li>
+							<li>A variety of open-source scripts for various tasks.</li>
+						</ul>
+					</ul>
+					
+				</section>
+				<!-- Pit Skylights-->
+				<section>
+					
+					<section >
+						<h2>Can Deep Learning help?</h2>
+						<h3>"Yes, but!"</h3>
+						<div class="image-row2">
+							<img src="./content/images/Immagine6.png" alt="Description of First Image" class="slide-image4">							
+						</div>
+					</section>
+					<section >
+						<h2>Framework?</h2>						
+						<div class="image-row2">
+							<img src="./content/images/frameworks2.png" alt="Description of First Image" class="slide-imag3">							
+						</div>
+					</section>
+					<section >
+						<h2>Programming Language??</h2>						
+						<div class="image-row2">
+							<img src="./content/images/languages.png" alt="Description of First Image" class="slide-image3">							
+						</div>
+					</section>
+					
+					<section>
+						<h2>A beginners nightmare!</h2>
+						<iframe src="https://giphy.com/embed/W3BUNKgdk4gpky1Egf" width="270" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+						<p><a href="https://giphy.com/gifs/painting-the-scream-edvard-munch-W3BUNKgdk4gpky1Egf"></a></p>
+						<p>A complete nightmare for beginners approaching both Deep Learning for planetary mapping and programming languages.
+						</p>
+					</section>
+					
+				</section>
+
+
+				<!-- Pit Skylights-->
+				<section>
+					
+					<section >
+						<h2>Available tools?</h2>				
+						<h3><a href="https://www.sciencedirect.com/science/article/pii/S0019103521003560" target="_blank">NOAH-H, a deep-learning, terrain classification system for Mars: Results for the ExoMars Rover candidate landing sites</a></h3>
+						<div class="image-row2">
+							<img src="./content/images/noah.png" alt="Description of First Image" class="slide-image5">							
+						</div>
+					</section>
+					<section >
+						<h2>Available tools?</h2>				
+						<h3><a href="https://www.mdpi.com/2072-4292/12/23/3981" target="_blank">DoMars16k: A Diverse Dataset for Weakly Supervised Geomorphologic Analysis on Mars</a></h3>				
+						<div class="image-row2">
+							<img src="./content/images/domars.png" alt="Description of First Image" class="slide-image4">							
+						</div>
+					</section>
+					<section>
+						<h2>Available tools?</h2>
+						<h3><a href="https://arxiv.org/abs/2304.02643" target="_blank">Segment Anything</a></h3>				
+						<img src="https://imgs.search.brave.com/QGol6Lz07dF7zDeBWpedlZELBOxL29BbcU3fpEQ2kZc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Y29tZXQuY29tL3Np/dGUvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDYvMTY4MDc4/Nzk0NTgzOS5naWY.gif"  class="slide-image4">
+					</section>
+					
+					<section >
+						<h2>Available tools?</h2>				
+						<h3><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022EA002278" target="_blank">DeepLandforms: A Deep Learning Computer Vision Toolset Applied to a Prime Use Case for Mapping Planetary Skylights</a></h3>				
+						<div class="image-row2">
+							<img src="./content/images/Figure-3-flowchart.png" alt="Description of First Image" class="slide-image6">							
+						</div>
+					</section>
+				</section>
+				<section>
+					<h2>Georeferenced Image Processing with Jupyter Notebook</h2>
+					<p>This Jupyter Notebook is a versatile tool designed for processing georeferenced images, including formats like GeoTiff, JP2, png/jpeg with world files, and CUB (USGS ISIS). With this tool, you can perform a range of tasks:</p>
+					<ul>
+						<li>Convert images to GeoTiff, Cloud Optimize GeoTiff (COG), JP2, png/jpeg with world files, and CUB (USGS ISIS).</li>
+						<li>Rescale pixel resolution of images.</li>
+						<li>Create tiles for images larger than a user-defined size limit.</li>
+						<li>Remove black borders from images or tiles.</li>
+						<li>Crop images or tiles with a 1:1 centered aspect ratio.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Technical Details and Capabilities</h2>
+					<p>The georeferenced image processing tool is built on a robust foundation:</p>
+					<ul>
+						<li>Powered by PyTorch with CUDA support for efficient processing.</li>
+						<li>Utilizes essential geospatial Python libraries, including rasterio, geopandas, fiona, shapely, and more.</li>
+						<li>Compatible with Facebook's Detectron2 framework, enabling advanced object detection.</li>
+						<li>Integrated with Ultralytics YOLOv8 for object detection tasks.</li>
+						<li>Supports Meta's Segment-anything for versatile image segmentation.</li>
+					</ul>
+					<p>The Jupyter Notebooks included in the toolkit are designed for different tasks:</p>
+					<ul>
+						<li>Facebook's Detectron2 framework notebooks: One for training and one for inference.</li>
+						<li>Ultralytics YOLO framework notebooks: One for training and one for inference.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Flexibility and Georeferencing</h2>
+					<p>Moreover, the tool offers flexibility with the ability to install and use various frameworks and additional tools.</p>
+					<p>Notably, geospatial information is preserved within image metadata, allowing for the creation of georeferenced vectorial shapes during inference based on detections.</p>
+				</section>
+				<section data-background-image="content/images/ctx_dete.png" class="ken-burns4 shadowed-text" data-state="changeToDark">
+					<div class="blurred-box">
+						<h3>DeepLandforms Pit and Craters detection over Tharsis Region on sampled CTX</h3>
+					</div>
+				</section>
+				<section>
+					<h2>Results outputs</h2>
+					<p>The output of the processing includes the following files:</p>
+					<ul>
+						<li>Crop of the detections (georeferenced)</li>
+						<li>Label file in YOLO txt format for object detection</li>
+						<li>Label file in COCO json format for object detection</li>
+						<li>Geopackage containing a single layer with image name, confidence level, class representing the bounding-box centroids as points</li>
+						<li>Geopackage containing a single layer with image name, confidence level, class representing the segmented shapes as polygons</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Main Ongoing Activities</h2>
+					
+					<ul>
+						<li>Code optimization to enhance performance and efficiency.</li>
+						<li>Implementation of topological validation functions on the results for data accuracy.</li>
+						<li>Expansion of visualization capabilities, addressing limitations present in common visualization packages, especially for non-Earth Reference Systems.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Master Thesis Projects</h2>
+					<p>Exploring DL for mapping:</p>
+					<ul>
+						<li>Pit Detection using U-Net: Dive into the fascinating world of pit detection leveraging the power of U-Net.</li>
+						<li>Mars Dust Storm Detection using U-Net: Contribute to the understanding of Mars by detecting dust storms with U-Net.</li>
+					</ul>
+				</section>
+				
+				
+				</section>				
+				
+				<section data-background-image="./content/images/deeplogo4k.png" class="ken-burns" data-state="changeToDark">
+					<div class="side-by-side">
+						<h3>Thanks for your attention</h3>
+						<img src="./content/logo/deeplandforms-git.png" style="height: 350px;">
+						
+					</div>
+				</section>
+					
+				
+				  	
+			</div>
+			
+			
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://player.vimeo.com/api/player.js"></script>
+
+		<script>
+			Reveal.initialize({
+			  hash: true,
+			  width: 1920,
+			  height: 1080,
+			  margin: 0.001,
+			  transition: 'convex',
+			  transitionSpeed: 'slow',
+			  controlsTutorial: true,
+			  controlsLayout: 'edges',
+			  controlsBackArrows: 'visible',
+			  autoPlayMedia: true,
+			  plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			});
+		
+			
+		  </script>		  		 
+		  
+		</body>
+		</html>
